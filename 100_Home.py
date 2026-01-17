@@ -69,32 +69,64 @@ try:
 except FileNotFoundError:
     kuma_b64 = ""
 
+try:
+    with open ("static/images/actual.webp", "rb") as f:
+        actual_b64 = base64.b64encode(f.read()).decode()
+except FileNotFoundError:
+    actual_b64 = ""
+
 st.markdown("<h1 style='text-align: center;'>MawaeNet</h1>", unsafe_allow_html=True)
 st.markdown("<h5 style='text-align: center;'>Welcome to the Private MawaeNet.</h5>", unsafe_allow_html=True)
 
 # Create three columns for the link boxes
 col1, col2, col3 = st.columns(3)
 
-# Jellyfin
+## Putting link boxes in alphabetical order
+
+# Actual Budget
 with col1:
+    st.markdown(f'''
+<a href="https://budget.mawae.net" style="text-decoration: none; color: inherit;">
+<div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; background-color: #000000; margin: 10px;">
+<p style="text-align: center; margin: 0; font-size: 2em;"><strong>Actual Budget</strong></p>
+<img src="data:image/webp;base64,{actual_b64}" alt="Actual Budget" width="128" style="margin: 10px 0;">
+<p style="text-align: center; margin: 0;">Privately Manage your Finances</p>
+</div>
+</a>
+''', unsafe_allow_html=True)
+
+# Immich
+with col2:
+    st.markdown(f'''
+<a href="https://immich.mawae.net" style="text-decoration: none; color: inherit;">
+<div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; background-color: #000000; margin: 10px;">
+<p style="text-align: center; margin: 0; font-size: 2em;"><strong>Immich</strong></p>
+<img src="data:image/webp;base64,{immich_b64}" alt="Immich" width="128" style="margin: 10px 0;">
+<p style="text-align: center; margin: 0;">Backup, Organize, and Share Photos</p>
+</div>
+</a>
+''', unsafe_allow_html=True)
+
+# Jellyfin
+with col3:
     st.markdown(f'''
 <a href="https://jellyfin.mawae.net" style="text-decoration: none; color: inherit;">
 <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; background-color: #000000; margin: 10px;">
 <p style="text-align: center; margin: 0; font-size: 2em;"><strong>Jellyfin</strong></p>
 <img src="data:image/webp;base64,{jellyfin_b64}" alt="Jellyfin" width="128" style="margin: 10px 0;">
-<p style="text-align: center; margin: 0;">Anime, Movie, and TV library</p>
+<p style="text-align: center; margin: 0;">Anime, Movies and TV</p>
 </div>
 </a>
 ''', unsafe_allow_html=True)
 
-# OmniTools
+# Karakeep
 with col1:
     st.markdown(f'''
-<a href="https://omni.mawae.net" style="text-decoration: none; color: inherit;">
+<a href="https://karakeep.mawae.net" style="text-decoration: none; color: inherit;">
 <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; background-color: #000000; margin: 10px;">
-<p style="text-align: center; margin: 0; font-size: 2em;"><strong>OmniTools</strong></p>
-<img src="data:image/webp;base64,{omni_b64}" alt="OmniTools" width="128" style="margin: 10px 0;">
-<p style="text-align: center; margin: 0;">A collection of tools for images, videos, pdfs, text, etc</p>
+<p style="text-align: center; margin: 0; font-size: 2em;"><strong>Karakeep</strong></p>
+<img src="data:image/webp;base64,{karakeep_b64}" alt="Karakeep" width="128" style="margin: 10px 0;">
+<p style="text-align: center; margin: 0;">Save and Tag Bookmarks for Later</p>
 </div>
 </a>
 ''', unsafe_allow_html=True)
@@ -106,31 +138,19 @@ with col2:
 <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; background-color: #000000; margin: 10px;">
 <p style="text-align: center; margin: 0; font-size: 2em;"><strong>Kuma</strong></p>
 <img src="data:image/webp;base64,{kuma_b64}" alt="Kuma" width="128" style="margin: 10px 0;">
-<p style="text-align: center; margin: 0;">Live status for all MawaeNet Services</p>
+<p style="text-align: center; margin: 0;">Live Status for All MawaeNet Services</p>
 </div>
 </a>
 ''', unsafe_allow_html=True)
 
-# Karakeep
-with col2:
-    st.markdown(f'''
-<a href="https://karakeep.mawae.net" style="text-decoration: none; color: inherit;">
-<div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; background-color: #000000; margin: 10px;">
-<p style="text-align: center; margin: 0; font-size: 2em;"><strong>Karakeep</strong></p>
-<img src="data:image/webp;base64,{karakeep_b64}" alt="Karakeep" width="128" style="margin: 10px 0;">
-<p style="text-align: center; margin: 0;">Bookmark Manager</p>
-</div>
-</a>
-''', unsafe_allow_html=True)
-
-# Immich
+# OmniTools
 with col3:
     st.markdown(f'''
-<a href="https://immich.mawae.net" style="text-decoration: none; color: inherit;">
+<a href="https://omni.mawae.net" style="text-decoration: none; color: inherit;">
 <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; background-color: #000000; margin: 10px;">
-<p style="text-align: center; margin: 0; font-size: 2em;"><strong>Immich</strong></p>
-<img src="data:image/webp;base64,{immich_b64}" alt="Immich" width="128" style="margin: 10px 0;">
-<p style="text-align: center; margin: 0;">Photo Backup</p>
+<p style="text-align: center; margin: 0; font-size: 2em;"><strong>OmniTools</strong></p>
+<img src="data:image/webp;base64,{omni_b64}" alt="OmniTools" width="128" style="margin: 10px 0;">
+<p style="text-align: center; margin: 0;">A Collection of Tools for Images, Videos, PDFs, Text, etc</p>
 </div>
 </a>
 ''', unsafe_allow_html=True)
